@@ -33,7 +33,7 @@ RUN mkdir -p /app/drupal/www && tar xvzf drupal.tar.gz --strip-components=1 -C /
 
 COPY ./files/ /
 
-RUN find /app -type f -name '*.sh' -exec chmod +x {} \; && \ 
+RUN find /app -type f -name '*.sh' -exec chmod +x {} \;
 
 EXPOSE 80
 #WORKDIR /app/www
