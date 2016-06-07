@@ -29,7 +29,10 @@ RUN rpm -Uvh 'https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch
     
 #Install Drupal
 ADD https://ftp.drupal.org/files/projects/drupal-8.1.2.tar.gz /tmp/drupal.tar.gz
-RUN mkdir -p /var/www/html/drupal && \
+ADD http://files.drush.org/drush.phar /usr/local/bin/drush
+
+RUN chmod +x /usr/local/bin/gosu &&\
+    mkdir -p /var/www/html/drupal && \
     tar xzf /tmp/drupal.tar.gz --strip-components=1 -C /var/www/html/drupal && \
     rm -f /tmp/drupal.tar.gz && \
     chown -R apache:apache /var/www/html/drupal
