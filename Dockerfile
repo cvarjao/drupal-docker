@@ -31,7 +31,8 @@ RUN rpm -Uvh 'https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch
 ADD https://ftp.drupal.org/files/projects/drupal-8.1.2.tar.gz /tmp/drupal.tar.gz
 ADD http://files.drush.org/drush.phar /usr/local/bin/drush
 
-RUN chmod a+x /usr/local/bin/gosu &&\
+RUN chmod a+x /usr/local/bin/gosu && \
+    chmod a+x /usr/local/bin/drush && \
     mkdir -p /var/www/html/drupal && \
     tar xzf /tmp/drupal.tar.gz --strip-components=1 -C /var/www/html/drupal && \
     rm -f /tmp/drupal.tar.gz && \
