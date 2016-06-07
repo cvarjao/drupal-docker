@@ -12,7 +12,7 @@ RUN yum install -y curl tar sudo cronie iputils bind-utils && \
 #Install gosu    
 ADD https://github.com/tianon/gosu/releases/download/1.9/gosu-amd64 /usr/local/bin/gosu
 ADD https://github.com/tianon/gosu/releases/download/1.9/gosu-amd64.asc /usr/local/bin/gosu.asc
-RUN chmod +x /usr/local/bin/gosu
+RUN chmod a+x /usr/local/bin/gosu
 
 #Install s6-overlay
 ADD https://github.com/just-containers/s6-overlay/releases/download/v1.17.2.0/s6-overlay-amd64.tar.gz /tmp/
@@ -31,7 +31,7 @@ RUN rpm -Uvh 'https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch
 ADD https://ftp.drupal.org/files/projects/drupal-8.1.2.tar.gz /tmp/drupal.tar.gz
 ADD http://files.drush.org/drush.phar /usr/local/bin/drush
 
-RUN chmod +x /usr/local/bin/gosu &&\
+RUN chmod a+x /usr/local/bin/gosu &&\
     mkdir -p /var/www/html/drupal && \
     tar xzf /tmp/drupal.tar.gz --strip-components=1 -C /var/www/html/drupal && \
     rm -f /tmp/drupal.tar.gz && \
