@@ -32,8 +32,8 @@ ADD https://ftp.drupal.org/files/projects/drupal-8.1.2.tar.gz /tmp/drupal.tar.gz
 RUN mkdir -p /var/www/html/drupal && \
     tar xvzf /tmp/drupal.tar.gz --strip-components=1 -C /var/www/html/drupal && \
     rm -f /tmp/drupal.tar.gz && \
-    chown -R apache:apache /var/www/html/drupal &&\
-    cp -p /var/www/html/drupal/sites/default/default.settings.php /var/www/html/drupal/sites/default/settings.php
+    chown -R apache:apache /var/www/html/drupal
+#    cp -p /var/www/html/drupal/sites/default/default.settings.php /var/www/html/drupal/sites/default/settings.php
 
 #chcon -R -t httpd_sys_content_rw_t /var/www/html/drupal/sites/
 
