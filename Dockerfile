@@ -5,7 +5,7 @@ MAINTAINER cleciovarjao@gmail.com
 ENV GOGS_CUSTOM /home/gogs
 
 #Install core tools
-RUN yum install -y curl tar sudo cronie iputils && \
+RUN yum install -y curl tar sudo cronie iputils bind-utils && \
     sed -i '/Defaults    requiretty/s/^/#/' /etc/sudoers && \
     yum clean all -y
 
