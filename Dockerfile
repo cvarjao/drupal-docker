@@ -12,7 +12,7 @@ RUN yum install -y curl tar sudo cronie iputils bind-utils && \
 #Install gosu    
 ADD https://github.com/tianon/gosu/releases/download/1.9/gosu-amd64 /usr/local/bin/gosu
 ADD https://github.com/tianon/gosu/releases/download/1.9/gosu-amd64.asc /usr/local/bin/gosu.asc
-RUN chmod a+x /usr/local/bin/gosu
+RUN chmod a+rx /usr/local/bin/gosu
 
 #Install s6-overlay
 ADD https://github.com/just-containers/s6-overlay/releases/download/v1.17.2.0/s6-overlay-amd64.tar.gz /tmp/
@@ -31,8 +31,8 @@ RUN rpm -Uvh 'https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch
 ADD https://ftp.drupal.org/files/projects/drupal-8.1.2.tar.gz /tmp/drupal.tar.gz
 ADD http://files.drush.org/drush.phar /usr/local/bin/drush
 
-RUN chmod a+x /usr/local/bin/gosu && \
-    chmod a+x /usr/local/bin/drush && \
+RUN chmod a+rx /usr/local/bin/gosu && \
+    chmod a+rx /usr/local/bin/drush && \
     mkdir -p /var/www/html/drupal && \
     tar xzf /tmp/drupal.tar.gz --strip-components=1 -C /var/www/html/drupal && \
     rm -f /tmp/drupal.tar.gz && \
@@ -46,8 +46,8 @@ COPY ./files/ /
 RUN chmod -R u+rw /var/www/html/drupal/sites/default/files && \
     chmod u+rw /var/www/html/drupal/sites/default/settings.php && \
     chown -R apache:apache /var/www/html/drupal && \
-    find /app -type f -name '*.sh' -exec chmod +x {} \;
-
+    find /app -type f -name '*.sh' -exec chmod +x {} \; && ;
+    gosu apache drush --root=/var/www/html/drupal cache-rebuild 
 EXPOSE 80
 #WORKDIR /app/www
 #VOLUME ["/data"]
