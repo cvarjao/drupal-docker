@@ -46,7 +46,7 @@ COPY ./files/ /
 RUN chmod -R u+rw /var/www/html/drupal/sites/default/files && \
     chmod u+rw /var/www/html/drupal/sites/default/settings.php && \
     chown -R apache:apache /var/www/html/drupal && \
-    find /app -type f -name '*.sh' -exec chmod +x {} \; && ;
+    find /app -type f -name '*.sh' -exec chmod +x {} \; && \
     gosu apache drush --root=/var/www/html/drupal cache-rebuild 
 EXPOSE 80
 #WORKDIR /app/www
