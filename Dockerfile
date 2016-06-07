@@ -35,6 +35,9 @@ RUN chmod a+x /usr/local/bin/gosu &&\
     mkdir -p /var/www/html/drupal && \
     tar xzf /tmp/drupal.tar.gz --strip-components=1 -C /var/www/html/drupal && \
     rm -f /tmp/drupal.tar.gz && \
+    mkdir -p /var/www/html/drupal/sites/default/files && \
+    chmod -R u+rw /var/www/html/drupal/sites/default/files && \
+    chmod u+rw /var/www/html/drupal/sites/default/settings.php && \
     chown -R apache:apache /var/www/html/drupal
 #    cp -p /var/www/html/drupal/sites/default/default.settings.php /var/www/html/drupal/sites/default/settings.php
 
