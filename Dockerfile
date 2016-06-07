@@ -33,8 +33,10 @@ RUN mkdir -p /app/drupal/www && tar --strip-components=1 -xvzf drupal-x.x.tar.gz
 
 COPY ./files/ /
 
+RUN find /app -type f -name '*.sh' -exec chmod +x {} \; && \ 
+
 EXPOSE 80
-WORKDIR /home/gogs
+WORKDIR /app/www
 VOLUME ["/data"]
 
-ENTRYPOINT ["top", "-b"]
+ENTRYPOINT ["/app/httpd/run-httpd.sh"]
