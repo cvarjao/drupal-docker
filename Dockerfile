@@ -29,14 +29,14 @@ RUN rpm -Uvh 'https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch
     
 #Install Drupal
 ADD https://ftp.drupal.org/files/projects/drupal-8.1.2.tar.gz /tmp/drupal.tar.gz
-RUN mkdir -p /app/drupal/www && tar --strip-components=1 -xvzf drupal-x.x.tar.gz -C /app/drupal/www
+RUN mkdir -p /app/drupal/www && tar --strip-components=1 -xvzf drupal.tar.gz -C /app/drupal/www
 
 COPY ./files/ /
 
 RUN find /app -type f -name '*.sh' -exec chmod +x {} \; && \ 
 
 EXPOSE 80
-WORKDIR /app/www
-VOLUME ["/data"]
+#WORKDIR /app/www
+#VOLUME ["/data"]
 
 ENTRYPOINT ["/app/httpd/run-httpd.sh"]
